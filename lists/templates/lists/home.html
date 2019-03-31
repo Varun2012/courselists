@@ -1,0 +1,94 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<form class="form-inline my-2 my-lg-0">
+    <input  value="{{search_term}}"name="search" method="GET" class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">
+    <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
+  </form>
+  <form action="{% url 'home' %}" method ="GET">
+  <div class="input-group mb-3">
+      <select class="custom-select"  name="filter" >
+        <option selected value="all" >all courses</option>
+        <option value="beginner">beginner</option>
+        <option value="intermediate">intermediate</option>
+        
+      </select>
+      <input type="submit" value="filter"/>
+      
+    </form>
+      
+    </div>
+    </form>
+  
+    
+     
+    
+  
+<div class="container">
+    <h1 class="text-center pt-3">Course list</h1>
+    <br />
+    <br />
+
+    
+    <hr />
+          {% for lists in list %}
+        <div class="row">
+                        <div class="col-md-4 ">
+                                <img class="img-fluid" src="{{ lists.image.url }}" height=200 width=200 />
+                        </div>
+            
+                <div class="col-md-4 text-center" >
+                            
+                    <a href="{%url 'detail' lists.id %}">
+                     <h1>{{ lists.title }}</h1>
+                  
+                   </a>Last updated: {{ lists.pub_date_pretty }}
+                </div>
+            
+          
+        
+          
+          
+             <div class="col-md-4 text-center" >
+                <p>Instructor: {{ lists.Instructor }}</p>
+          You can start if you are {{ lists.lev }}
+          <br> {{ lists.typ }}
+          
+          <a href="{%url 'detail' lists.id %}">
+          <form  >
+            <input class="btn btn-primary" type="button" value="Explore!" />
+          </form></a>
+              </div>
+    </div><br>
+    <br>
+
+          {% endfor %}
+          
+
+
+          <div class="pagination">
+            <span class="step-links">
+                {% if list.has_previous %}
+                    <a href="?page=1">&laquo; first</a>
+                    <a href="?page={{ list.previous_page_number }}">previous</a>
+                {% endif %}
+        
+                <span class="current">
+                    Page {{ list.number }} of {{ list.paginator.num_pages }}.
+                </span>
+        
+                {% if list.has_next %}
+                    <a href="?page={{ list.next_page_number }}">next</a>
+                    <a href="?page={{ list.paginator.num_pages }}">last &raquo;</a>
+                {% endif %}
+            </span>
+        </div>
+
+</div>
+      
+    
+
+    {% endblock %}
+    
+
+   

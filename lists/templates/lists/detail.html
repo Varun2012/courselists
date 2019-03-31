@@ -1,0 +1,26 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<div class="container">
+    <h1 class="text-center pt-3">{{ lists.title }}</h1>
+    <p class="text-center">{{ lists.pub_date }}</p>
+    <img class="img-fluid" src="{{ lists.image.url }}"  height="600" width="500"/>
+    <br />
+    <br />
+    <p>{{ lists.text }} </p>
+    <form  >
+      {% csrf_token%}
+      <input class="btn btn-primary" type="submit" value="register!" />
+    </form>
+
+  </div>
+
+
+
+
+
+
+
+
+
+{% endblock %}

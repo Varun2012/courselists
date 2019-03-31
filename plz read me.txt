@@ -1,0 +1,6 @@
+for searching and filtering change is done in views .py
+ in lists and home.html in list
+for admin panel a folder added in courselists>templates
+name admin which contain base_site.html where change is done
+
+and for adding features in admin panel change is done in lists admin.py file
